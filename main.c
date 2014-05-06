@@ -143,7 +143,7 @@ void printFile(char* path, RootDir* rd){
 			printf("%c", path[i]);
 		}
 		if (i % 8 == 7){
-			printf("\\");
+			printf("/");
 		}
 		i++;
 	}
