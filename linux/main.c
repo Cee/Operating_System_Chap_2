@@ -37,6 +37,9 @@ typedef struct {
 void readFile(FILE* file, char* path, int offset, RootDir* rd);
 void addToPath(char* path, char* oldPath);
 void printFile(char* path, RootDir* rd);
+void my_print(char* c, int length);
+void change_color();
+void ret_color();
 int TotalSection;
 int main(){
 	FILE *file = fopen("a.img", "r");											//打开 a.img
@@ -138,28 +141,30 @@ BOOL isValid(RootDir* rd){
 
 void printFile(char* path, RootDir* rd){
 	int i = 0;
+	change_color();
+	char* p = "/";
 	while (i < strlen(path)){
 		if (path[i] != ' '){
-			printf("%c", path[i]);
+			my_print(&path[i], 1);
 		}
 		if (i % 8 == 7){
-			printf("/");
+			my_print(p, 1);
 		}
 		i++;
 	}
-
+	ret_color();
 	for (i = 0; i < 8; i++){
 		if (rd->DIR_Name[i] == ' '){
 			break;
 		}
-		printf("%c", rd->DIR_Name[i]);
+		my_print(&rd->DIR_Name[i], 1);
 	}
-	printf(".");
+	my_print(".", 1);
 	for (i = 8; i < 11; i++){
 		if (rd->DIR_Name[i] == ' '){
 			break;
 		}
-		printf("%c", rd->DIR_Name[i]);
+		my_print(&rd->DIR_Name[i], 1);
 	}
 	printf("\n");
 }
